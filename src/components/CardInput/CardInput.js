@@ -13,7 +13,6 @@ const CardInput = ({
   onChange,
   onBlur,
   value,
-  type,
   error,
   required,
 }) => {
