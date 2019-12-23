@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TextInput, Image} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import {TextInputMask} from 'react-native-masked-text';
 import valid from 'card-validator';
 import PropTypes from 'prop-types';
@@ -21,24 +21,28 @@ const CardInput = ({
   return (
     <View style={styles.cardInputContainer}>
       <View style={styles.labelContainer}>
-        <TextInput style={styles.inputLabel}>{label}</TextInput>
-        {required && <View style={styles.required}>*</View>}
+        <Text style={styles.inputLabel}>{label}</Text>
+        {required && <Text style={styles.required}>*</Text>}
       </View>
       <TextInputMask
         id={id}
         style={error ? [styles.input, styles.errorInput] : styles.input}
         title="text"
-        mask={getCardInputMask(value)}
+        type="credit-card"
+        options={{
+          obfuscated: false,
+          mask: getCardInputMask(value),
+        }}
         placeholder={placeholder}
-        onChange={onChange}
+        onChangeText={onChange}
         onBlur={onBlur}
         value={value}
-        type={type}
       />
       {numberValidation.card && (
         <Image
           style={styles.cardImage}
           source={getCardLogo(numberValidation.card.type)}
+          resizeMode="contain"
         />
       )}
     </View>
@@ -49,7 +53,7 @@ CardInput.propTypes = {
   id: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   type: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,

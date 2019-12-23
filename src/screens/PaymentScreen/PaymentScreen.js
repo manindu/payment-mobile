@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, SafeAreaView} from 'react-native';
+import {View, SafeAreaView, KeyboardAvoidingView} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import valid from 'card-validator';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import styles from './PaymentScreen.style';
-import {Loading, Input, Button} from '../../components';
+import {Loading, Input, Button, CardInput} from '../../components';
 import {submitPayment} from '../../state/actions/paymentActions';
 
 const PaymentScreen = ({submitPaymentDetails, payment}) => {
@@ -79,7 +79,10 @@ const PaymentScreen = ({submitPaymentDetails, payment}) => {
         isValid,
       }) => (
         <SafeAreaView>
-          <View style={styles.container}>
+          <KeyboardAvoidingView
+            style={styles.container}
+            behavior="padding"
+            enabled>
             <Input
               id="name"
               label="Name on Card"
@@ -87,6 +90,18 @@ const PaymentScreen = ({submitPaymentDetails, payment}) => {
               onBlur={handleBlur('name')}
               value={values.name}
               error={touched.name && errors.name && errors.name.toString()}
+            />
+            <CardInput
+              id="cardNumber"
+              label="Card Number"
+              onChange={handleChange('cardNumber')}
+              onBlur={handleBlur('cardNumber')}
+              value={values.cardNumber}
+              error={
+                touched.cardNumber &&
+                errors.cardNumber &&
+                errors.cardNumber.toString()
+              }
             />
             <View style={styles.expirySection}>
               <Input
@@ -120,7 +135,7 @@ const PaymentScreen = ({submitPaymentDetails, payment}) => {
               placeholder="454"
             />
             <Button disabled={!isValid} onClick={handleSubmit} />
-          </View>
+          </KeyboardAvoidingView>
         </SafeAreaView>
       )}
     />

@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import {colors} from '../../constants';
 
 const styles = StyleSheet.create({
-  container: {
+  cardInputContainer: {
     width: '90%',
     marginBottom: 20,
   },
@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     position: 'absolute',
+    width: 40,
+    right: 10,
+    top: 1,
   },
 });
 
