@@ -6,9 +6,6 @@ const styles = StyleSheet.create({
     width: '90%',
     marginBottom: 20,
   },
-  spacing: {
-    height: 21,
-  },
   errorInput: {
     borderWidth: 2,
     borderColor: colors.errorColor,

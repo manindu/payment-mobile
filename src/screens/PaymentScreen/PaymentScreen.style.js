@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {colors} from '../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,6 +12,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '90%',
     justifyContent: 'space-between',
+  },
+  labelContainer: {
+    flexDirection: 'row',
+    width: '90%',
+    marginBottom: 5,
+    alignSelf: 'center',
+  },
+  required: {
+    color: colors.errorColor,
   },
 });
 

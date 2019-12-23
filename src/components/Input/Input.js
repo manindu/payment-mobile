@@ -13,6 +13,7 @@ const Input = ({
   error,
   required,
   style,
+  keyboardType,
 }) => {
   return (
     <View id={id} style={[styles.container, style]}>
@@ -32,6 +33,7 @@ const Input = ({
         onBlur={onBlur}
         value={value}
         underlineColorAndroid="transparent"
+        keyboardType={keyboardType}
       />
     </View>
   );
@@ -47,6 +49,7 @@ Input.propTypes = {
   error: PropTypes.string,
   required: PropTypes.bool,
   style: PropTypes.shape({}),
+  keyboardType: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -55,6 +58,7 @@ Input.defaultProps = {
   error: '',
   required: true,
   style: {},
+  keyboardType: 'default',
 };
 
 export default Input;
